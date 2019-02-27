@@ -2,7 +2,7 @@
 layout: blog
 title: Hello Markdown
 date: 2019-02-26T15:36:52.223Z
-cover_image: '../../images/hello-markdown.jpg'
+cover_image: /img/hello-markdown.jpg
 description: My first attempt try to integrate Netlify CMS with Gatsby.
 ---
 

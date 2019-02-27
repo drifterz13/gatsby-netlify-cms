@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
+import Img from "gatsby-image"
 import { css } from "@emotion/core"
 import { rhythm } from "../utils/typography"
 import Layout from "../components/layout"
@@ -20,6 +21,16 @@ export default ({ data }) => {
         >
           {post.frontmatter.title}
         </h1>
+        <Img
+          css={css`
+            height: 350px;
+            margin: ${rhythm(2)} 0;
+            @media (max-width: 480px) {
+              height: 150px;
+            }
+          `}
+          fluid={post.frontmatter.cover_image.childImageSharp.fluid}
+        />
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <Link
           css={css`
@@ -40,6 +51,13 @@ export const query = graphql`
       html
       frontmatter {
         title
+        cover_image {
+          childImageSharp {
+            fluid(maxWidth: 1080) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
     }
   }

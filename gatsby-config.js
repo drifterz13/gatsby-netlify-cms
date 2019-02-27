@@ -20,6 +20,20 @@ module.exports = {
         name: "pages",
       },
     },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1080,
+            },
+          },
+        ],
+      },
+    },
+    `gatsby-remark-copy-linked-files`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -44,7 +58,6 @@ module.exports = {
       resolve: `gatsby-plugin-emotion`,
       options: {},
     },
-    `gatsby-transformer-remark`,
     `gatsby-plugin-netlify-cms`,
   ],
 }

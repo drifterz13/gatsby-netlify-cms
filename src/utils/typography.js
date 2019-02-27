@@ -15,4 +15,5 @@ funstonTheme.googleFonts = [
 ]
 const typography = new Typography(funstonTheme)
 
+export const { scale, rhythm } = typography
 export default typography

@@ -1,19 +1,41 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
+import { css } from "@emotion/core"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+
+import { rhythm } from "../utils/typography"
 
 const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+    <h1>Blog posts</h1>
     {data.allMarkdownRemark.edges.map(({ node }) => (
-      <React.Fragment key={node.id}>
+      <div
+        css={css`
+          padding: ${rhythm(1)};
+          margin-bottom: ${rhythm(2)};
+          border: 5px solid #6decc9;
+        `}
+        key={node.id}
+      >
         <h1>{node.frontmatter.title}</h1>
-        <p>{node.frontmatter.description}</p>
+        <p>{node.excerpt}</p>
+        <hr
+          css={css`
+            background: #fafafa;
+          `}
+        />
         <i>{node.frontmatter.date}</i>
-        <hr />
-        <div dangerouslySetInnerHTML={{__html: node.html}} />
-      </React.Fragment>
+        <div
+          css={css`
+            margin-top: ${rhythm(0.5)};
+            color: skyblue;
+          `}
+        >
+          <Link to={node.fields.slug}>Read more</Link>
+        </div>
+      </div>
     ))}
   </Layout>
 )
@@ -26,13 +48,14 @@ export const query = graphql`
       edges {
         node {
           id
-          html
           frontmatter {
             title
-            date
-            layout
-            description
+            date(formatString: "DD MMMM, YYYY")
           }
+          fields {
+            slug
+          }
+          excerpt(pruneLength: 150)
         }
       }
     }

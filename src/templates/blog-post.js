@@ -26,7 +26,7 @@ export default ({ data }) => {
             height: 350px;
             margin: ${rhythm(2)} 0;
             @media (max-width: 480px) {
-              height: 150px;
+              height: 200px;
             }
           `}
           fluid={post.frontmatter.cover_image.childImageSharp.fluid}
